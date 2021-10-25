@@ -1,13 +1,8 @@
-import Head from 'next/head'
-import Layout from '../components/Layout';
+import Login from '../components/Login';
 
 
 const Index = () => (
-  <div>
-    <Layout>
-      <h1 className="text-2xl text-gray-800 font-light">Alumnos</h1>
-    </Layout>
-  </div>
+    <Login />
 )
 
 export default Index

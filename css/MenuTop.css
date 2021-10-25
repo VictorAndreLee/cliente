@@ -1,0 +1,23 @@
+.menu-top {
+  display: flex;
+}
+
+.ant-btn-link {
+  background-color: transparent;
+  border: 0;
+}
+
+.menu__center {
+  display: flex;
+  align-items: center;  
+}
+
+.menu__center > h2 {
+  font-size: 1rem;
+  color: rgba(0, 0, 0);
+}
+
+.menu-top__right {
+  position: absolute;
+  right: 13rem;
+}

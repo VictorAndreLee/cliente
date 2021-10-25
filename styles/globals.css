@@ -1,5 +1,11 @@
-@import url("../pages/css/login.css");
-@import url("../pages/css/slidebar.css");
+@import url('antd/dist/antd.css');
+@import url("../css/login.css");
+@import url("../css/slidebar.css");
+@import url("../css/Layout.css");
+@import url("../css/MenuSider.css");
+@import url("../css/MenuTop.css");
+
+
 
 
 html,

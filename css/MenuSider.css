@@ -1,0 +1,75 @@
+:root {
+  --primary : #0dac27;
+}
+
+.admin-sider {
+    position: fixed;
+    z-index: 3;
+    left: 0;
+    height: 100vh;
+    overflow: auto;
+    background-color: var(--primary);
+    width: 100vw;
+}
+
+.ant-menu-root.ant-menu-inline  {
+  background-color: var(--primary);
+}
+
+.ant-menu-root.ant-menu-inline li,
+.ant-menu-item a,
+.ant-menu-submenu-arrow {
+  color: white;
+}
+
+/* item seleccionado */
+.ant-menu-item, .ant-menu-sub.ant-menu-inline {
+  background-color: transparent !important;
+}
+
+
+.ant-menu-item:hover,
+.ant-menu-sub.ant-menu-inline:hover,
+.ant-menu-item a:hover,
+.ant-menu-sub.ant-menu-inline i:hover,
+.ant-menu-submenu-arrow:hover,
+.ant-menu-root.ant-menu-inline li:hover,
+.ant-menu-root.ant-menu-inline > i:hover {
+  color: red !important;
+}
+
+
+.ant-menu-submenu-active i,
+.ant-menu-submenu-title:hover{
+  color: red !important;
+}
+
+.ant-menu-root i:hover, .ant-menu-submenu-title:hover {
+ color: red !important;
+}
+
+.ant-layout-sider-children, 
+.ant-menu.ant-menu-inline-collapsed {
+  background-color: var(--primary);
+}
+
+
+/* items hover */
+
+.admin-sider__container-logo {
+  display: flex;
+  width: 250px;
+  height: 10rem;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.admin-sider-logo {
+  background-image: url("../public/img/escudo.png");
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 200px;
+  height: 130px;
+}
