@@ -21,3 +21,13 @@
   position: absolute;
   right: 13rem;
 }
+
+.menu-top__left-boton > button, 
+.menu-top__right > button {
+  color: var(--primary);
+}
+
+.menu-top__left-boton > button:hover, 
+.menu-top__right > button:hover {
+  color: rgba(31, 41, 55, var(--tw-bg-opacity))
+}

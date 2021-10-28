@@ -35,22 +35,29 @@
 .ant-menu-submenu-arrow:hover,
 .ant-menu-root.ant-menu-inline li:hover,
 .ant-menu-root.ant-menu-inline > i:hover {
-  color: red !important;
+  color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+  border-color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
 }
 
 
 .ant-menu-submenu-active i,
 .ant-menu-submenu-title:hover{
-  color: red !important;
+  color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+  outline-color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+  forced-color-adjust: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
 }
 
 .ant-menu-root i:hover, .ant-menu-submenu-title:hover {
- color: red !important;
+ color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+ outline-color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+ forced-color-adjust: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
 }
 
 .ant-layout-sider-children, 
 .ant-menu.ant-menu-inline-collapsed {
   background-color: var(--primary);
+  outline-color: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
+  forced-color-adjust: rgba(31, 41, 55, var(--tw-bg-opacity)) !important;
 }
 
 
@@ -58,7 +65,7 @@
 
 .admin-sider__container-logo {
   display: flex;
-  width: 250px;
+  width: 100%;
   height: 10rem;
   align-items: center;
   justify-content: space-between;

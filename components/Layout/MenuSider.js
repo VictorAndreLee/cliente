@@ -1,9 +1,10 @@
 import React from "react";
 import { Menu, Layout } from "antd";
 import {
+  DollarCircleOutlined,
   FileTextOutlined,
   HomeOutlined,
-  MedicineBoxOutlined,
+  QrcodeOutlined,
   UserOutlined,
 } from "@ant-design/icons";
 import Link from 'next/link';
@@ -29,19 +30,32 @@ const MenuSider = (props) => {
         </Menu.Item>
         <SubMenu icon={<FileTextOutlined />} title="Registros" key="x">
         
-          <Menu.Item key="b"><Link href="/pacientes">Alumnos</Link></Menu.Item>
+          <Menu.Item key="b"><Link href="/apoderados">Apoderados</Link></Menu.Item>
         
-          <Menu.Item key="c"><Link href="/usuarios">Apoderados</Link></Menu.Item>
-        
-          <Menu.Item key="d"><Link href="/categorias">Profesores</Link></Menu.Item>
+          <Menu.Item key="c"><Link href="/alumno">Alumno</Link></Menu.Item>
 
-          <Menu.Item key="e"><Link href="/tratamiento">Cursos</Link></Menu.Item>
+          <Menu.Item key="d"><Link href="/cursos">Cursos</Link></Menu.Item>
+
+          <Menu.Item key="e"><Link href="/grados">Grados</Link></Menu.Item>
+
+          <Menu.Item key="f"><Link href="/cursos">Cursos</Link></Menu.Item>
           
+          <Menu.Item key="l"><Link href="/profesor">Profesores</Link></Menu.Item>
         </SubMenu>
        
         <Menu.Item key="g">
-          <MedicineBoxOutlined />
-          <span className="nav-text"><Link href="/historial"><a href="#">Historial</a></Link></span>
+          <QrcodeOutlined />
+          <span className="nav-text"><Link href="#"><a href="#">Programación</a></Link></span>
+        </Menu.Item>
+
+        <Menu.Item key="h">
+          <UserOutlined />
+          <span className="nav-text"><Link href="#"><a href="#">Matrícula</a></Link></span>
+        </Menu.Item>
+
+        <Menu.Item key="i">
+          <DollarCircleOutlined />
+          <span className="nav-text"><Link href="#"><a href="#">Ingresos</a></Link></span>
         </Menu.Item>
       </Menu>
     </Sider>
