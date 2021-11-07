@@ -1,16 +1,15 @@
-import { ApolloClient, createHttpLink, InMemoryCache } from '@apollo/client';
+import { ApolloClient, InMemoryCache }  from '@apollo/client';
 import { setContext } from 'apollo-link-context';
-
-const httpLink = createHttpLink({
-    uri: 'http://localhost:4000/',
-    //fetch
-})
-// https://afternoon-tor-05688.herokuapp.com/
+import { createUploadLink } from 'apollo-upload-client';
+// const httpLink = createHttpLink({
+//     uri: 'http://localhost:4000/graphql',
+// })
+const middlewareUpdate =  createUploadLink({ uri : process.env.SERVER });
 const authLink = setContext((_, {headers}) => {
-
+    
     // Leer el storage almacenado
     const token = localStorage.getItem('token');
-    console.log(token);
+    // console.log(token);
     return {
         headers:{
         ...headers,
@@ -18,10 +17,34 @@ const authLink = setContext((_, {headers}) => {
     }}
 });
 
-const client = new ApolloClient({
+
+
+
+const client = new ApolloClient({   
     connectToDevTools: true,
-    cache: new InMemoryCache(),
-    link: authLink.concat( httpLink )
-});
+    link : authLink.concat( middlewareUpdate ), 
+    cache: new InMemoryCache(
+    //     {
+    //     typePolicies:
+    //     {   
+    //         obtenerCategorias: {
+    //             keyFields: ["__ref"]
+    //         },
+    //         obtenerUsuarios: {
+    //             keyFields: ["__ref"]
+    //         },
+    //         obtenerPacientes: {
+    //             keyFields: [["__ref"]]
+    //         },
+    //         obtenerTratamientos: {
+    //             keyFields: [["__ref"]]
+    //         },
+    //     }
+    // }
+    ),
+    fetchOptions: {
+        mode: 'no-cors',
+    },
+})
 
 export default client;

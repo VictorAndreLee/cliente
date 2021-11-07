@@ -81,15 +81,13 @@ const EditarApoderado = () => {
         correo: Yup.string()
           .email("El formato del email es incorrecto")
           .required("Correo del apoderado obligatorio"),
-        nacimiento: Yup.string().required("Nacimiento del apoderado obligatorio"),
-        distrito: Yup.string().required("Distrito del apoderado obligatorio"),
-        direccion: Yup.string().required("Dirección del apoderado obligatorio"),
+        nacimiento: Yup.string(),
+        distrito: Yup.string(),
+        direccion: Yup.string(),
         dni: Yup.number()
-        .typeError("Debe ser un número", NaN)
-        .required("Número de documento obligatorio"),
+        .typeError("Debe ser un número", NaN),
       celular: Yup.number()
-        .typeError("Debe ser un número", NaN)
-        .required("Número de celular obligatorio"),
+        .typeError("Debe ser un número", NaN),
       });
 
 

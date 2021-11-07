@@ -61,7 +61,7 @@ const TablaProfesor = ({item}) => {
     // Eliminar Producto
     const confirmarEliminarProducto = () => {
         Swal.fire({
-            title: '¿Deseas eliminar al apoderado?',
+            title: '¿Deseas eliminar al profesor?',
             text: "Esta acción no se puede deshacer",
             icon: 'warning',
             showCancelButton: true,
@@ -107,7 +107,7 @@ const TablaProfesor = ({item}) => {
         <tr>
             <td className="border px-4 py-2">{nombre}</td>
             <td className="border px-4 py-2">{apellido}</td>
-            <td className="border px-4 py-2">{nacimiento}</td>
+            <td className="border px-4 py-2">{nacimiento.substring(0,10)}</td>
             <td className="border px-4 py-2">{dni}</td>
             <td className="border px-4 py-2">{celular}</td>
             <td className="border px-4 py-2">{correo}</td>

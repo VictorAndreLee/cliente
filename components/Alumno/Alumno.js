@@ -13,7 +13,6 @@ const NUEVO_ALUMNO = gql`
       id
       nombre
       apellido
-      apoderado
       nacimiento    
       docNum
       creado
@@ -27,7 +26,6 @@ const OBTENER_ALUMNOS = gql`
       id
       nombre
       apellido
-      apoderado
       nacimiento    
       docNum
       creado
@@ -67,19 +65,14 @@ const Alumno = () => {
     initialValues: {
       nombre: "",
       apellido: "",
-      apoderado: "",
       nacimiento: "",
       docNum: "",
     },
     validationSchema: Yup.object({
       nombre: Yup.string().required("Nombre del alumno obligatorio"),
       apellido: Yup.string().required("Apellido del alumno obligatorio"),
-      apoderado: Yup.string()
-        .required("Apoderado obligatorio"),
-      nacimiento: Yup.string().required("Nacimiento del alumno obligatorio"),
-      docNum: Yup.number()
-        .typeError("Debe ser un número", NaN)
-        .required("Número de documento obligatorio"),
+      nacimiento: Yup.string(),
+      docNum: Yup.number().typeError("Debe ser un número", NaN),
     }),
     onSubmit: async (valores) => {
       console.log(valores);
@@ -87,7 +80,6 @@ const Alumno = () => {
       const {
         nombre,
         apellido,
-        apoderado,
         nacimiento,
         docNum,
       } = valores;
@@ -98,7 +90,6 @@ const Alumno = () => {
             input: {
               nombre,
               apellido,
-              apoderado,
               nacimiento,
               docNum,
             },
@@ -194,31 +185,6 @@ const Alumno = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="Apoderado"
-              >
-                Apoderado
-              </label>
-              <input
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring"
-                id="apoderado"
-                type="text"
-                placeholder="Apoderado"
-                value={formik.values.apoderado}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              />
-            </div>
-
-            {formik.touched.apoderado && formik.errors.apoderado && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.apoderado}</p>
-              </div>
-            )}
-
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="dni"
               >
                 N° de doc
@@ -235,12 +201,6 @@ const Alumno = () => {
               />
             </div>
 
-            {formik.touched.docNum && formik.errors.docNum && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.docNum}</p>
-              </div>
-            )}
 
             
 
@@ -262,12 +222,6 @@ const Alumno = () => {
               />
             </div>
 
-            {formik.touched.nacimiento && formik.errors.nacimiento && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.nacimiento}</p>
-              </div>
-            )}
 
             <input
               type="submit"
@@ -284,7 +238,6 @@ const Alumno = () => {
             <tr className="text-white">
               <th className="w-1/5 py-2">Nombre</th>
               <th className="w-1/5 py-2">Apellido</th>
-              <th className="w-1/5 py-2">Apoderado</th>
               <th className="w-1/5 py-2">Nacimiento</th>
               <th className="w-1/5 py-2">Doc Num</th>
               <th className="w-1/5 py-2">Acciones</th>

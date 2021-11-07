@@ -17,7 +17,6 @@ const OBTENER_ALUMNOS = gql`
       id
       nombre
       apellido
-      apoderado
       nacimiento    
       docNum
       creado
@@ -32,7 +31,6 @@ const TablaAlumno = ({item}) => {
         id, 
         nombre,
         apellido,
-        apoderado,
         nacimiento,
         docNum } = item;
 
@@ -101,8 +99,7 @@ const TablaAlumno = ({item}) => {
         <tr>
             <td className="border px-4 py-2">{nombre}</td>
             <td className="border px-4 py-2">{apellido}</td>
-            <td className="border px-4 py-2">{apoderado}</td>
-            <td className="border px-4 py-2">{nacimiento}</td>
+            <td className="border px-4 py-2">{nacimiento.substring(0,10)}</td>
             <td className="border px-4 py-2">{docNum}</td>
             <td className="border px-4 py-2 ">
                 <button

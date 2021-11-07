@@ -66,13 +66,6 @@ const Curso = () => {
 
       const {
         nombre,
-        apellido,
-        dni,
-        correo,
-        celular,
-        nacimiento,
-        distrito,
-        direccion,
       } = valores;
 
       try {
@@ -80,13 +73,6 @@ const Curso = () => {
           variables: {
             input: {
               nombre,
-              apellido,
-              dni,
-              correo,
-              celular,
-              nacimiento,
-              distrito,
-              direccion,
             },
           },
         });

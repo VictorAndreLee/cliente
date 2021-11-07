@@ -83,19 +83,12 @@ const Apoderado = () => {
     validationSchema: Yup.object({
       nombre: Yup.string().required("Nombre del apoderado obligatorio"),
       apellido: Yup.string().required("Apellido del apoderado obligatorio"),
-      correo: Yup.string()
-        .email("El formato del email es incorrecto")
-        .required("Correo del apoderado obligatorio"),
-      nacimiento: Yup.string().required("Nacimiento del apoderado obligatorio"),
-      distrito: Yup.string().required("Distrito del apoderado obligatorio"),
-      direccion: Yup.string().required("Dirección del apoderado obligatorio"),
-      dni: Yup.number()
-
-        .typeError("Debe ser un número", NaN)
-        .required("Número de documento obligatorio"),
-      celular: Yup.number()
-        .typeError("Debe ser un número", NaN)
-        .required("Número de celular obligatorio"),
+      correo: Yup.string().email("El formato del email es incorrecto"),
+      nacimiento: Yup.string(),
+      distrito: Yup.string(),
+      direccion: Yup.string(),
+      dni: Yup.number().typeError("Debe ser un número", NaN),
+      celular: Yup.number().typeError("Debe ser un número", NaN),
     }),
     onSubmit: async (valores) => {
       console.log(valores);
@@ -231,12 +224,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.correo && formik.errors.correo && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.correo}</p>
-              </div>
-            )}
 
             <div className="mb-4">
               <label
@@ -257,12 +244,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.dni && formik.errors.dni && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.dni}</p>
-              </div>
-            )}
 
             <div className="mb-4">
               <label
@@ -283,12 +264,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.celular && formik.errors.celular && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.celular}</p>
-              </div>
-            )}
 
             <div className="mb-4">
               <label
@@ -308,12 +283,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.nacimiento && formik.errors.nacimiento && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.nacimiento}</p>
-              </div>
-            )}
 
             <div className="mb-4">
               <label
@@ -333,12 +302,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.distrito && formik.errors.distrito && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.distrito}</p>
-              </div>
-            )}
 
             <div className="mb-4">
               <label
@@ -358,12 +321,6 @@ const Apoderado = () => {
               />
             </div>
 
-            {formik.touched.direccion && formik.errors.direccion && (
-              <div className="my-2 bg-red-100 border-l-4 border-red-500 text-red-700 p-4">
-                <p className="font-bold">Error</p>
-                <p>{formik.errors.direccion}</p>
-              </div>
-            )}
 
             <input
               type="submit"
