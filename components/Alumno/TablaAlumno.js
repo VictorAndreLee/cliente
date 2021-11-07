@@ -5,54 +5,48 @@ import { useMutation, useQuery, gql } from '@apollo/client';
 
 import Router from 'next/router';
 
-const ELIMINAR_APODERADO = gql`
-    mutation eliminarApoderado($id: ID!) {
-    eliminarApoderado(id: $id)
+const ELIMINAR_ALUMNO = gql`
+    mutation eliminarAlumno($id: ID!) {
+        eliminarAlumno(id: $id)
     }
 `;
 
-const OBTENER_APODERADOS = gql`
-    query obtenerApoderados {
-    obtenerApoderados {
-        id
-        nombre
-        apellido
-        dni
-        correo
-        celular
-        nacimiento
-        distrito
-        direccion
-        creado
+const OBTENER_ALUMNOS = gql`
+  query obtenerAlumnos {
+    obtenerAlumnos {
+      id
+      nombre
+      apellido
+      apoderado
+      nacimiento    
+      docNum
+      creado
     }
-    }
+  }
 `;
 
-const TablaApoderado = ({item}) => {
+const TablaAlumno = ({item}) => {
 
     // Destructior item
     const { 
         id, 
         nombre,
         apellido,
-        dni,
-        correo,
-        celular,
+        apoderado,
         nacimiento,
-        distrito,
-        direccion } = item;
+        docNum } = item;
 
     // Utilizar Mutation
-    const [ eliminarApoderado ] = useMutation(ELIMINAR_APODERADO, {
+    const [ eliminarAlumno ] = useMutation(ELIMINAR_ALUMNO, {
         update(cache) {
             // Obtener una copia del objeto de cache
-            const { obtenerApoderados } = cache.readQuery({ query: OBTENER_APODERADOS });
+            const { obtenerAlumnos } = cache.readQuery({ query: OBTENER_ALUMNOS });
 
             // Reescribir el cache
             cache.writeQuery({
-                query: OBTENER_APODERADOS,
+                query: OBTENER_ALUMNOS,
                 data: {
-                    obtenerApoderados : obtenerApoderados.filter( obtenerApoderados => obtenerApoderados.id !== id)
+                    obtenerAlumnos : obtenerAlumnos.filter( obtenerAlumnos => obtenerAlumnos.id !== id)
                 }
             })
         }
@@ -61,7 +55,7 @@ const TablaApoderado = ({item}) => {
     // Eliminar Producto
     const confirmarEliminarProducto = () => {
         Swal.fire({
-            title: '¿Deseas eliminar al apoderado?',
+            title: '¿Deseas eliminar al alumno?',
             text: "Esta acción no se puede deshacer",
             icon: 'warning',
             showCancelButton: true,
@@ -74,7 +68,7 @@ const TablaApoderado = ({item}) => {
             //   console.log('eliminando', id);
                 try {
                     // Eliminar por ID
-                    const { data } = await eliminarApoderado({
+                    const { data } = await eliminarAlumno({
                         variables:{
                             id: id
                         }
@@ -84,7 +78,7 @@ const TablaApoderado = ({item}) => {
                     // console.log(data);
                     Swal.fire(
                         'Eliminado',
-                        data.eliminarApoderado,
+                        data.eliminarAlumno,
                         'success'
                     )
 
@@ -98,7 +92,7 @@ const TablaApoderado = ({item}) => {
 
     const editarCliente = () => {
         Router.push({
-            pathname:'/apoderados/[id]',
+            pathname:'/alumno/[id]',
             query:{ id }
         })
     }
@@ -107,12 +101,9 @@ const TablaApoderado = ({item}) => {
         <tr>
             <td className="border px-4 py-2">{nombre}</td>
             <td className="border px-4 py-2">{apellido}</td>
+            <td className="border px-4 py-2">{apoderado}</td>
             <td className="border px-4 py-2">{nacimiento}</td>
-            <td className="border px-4 py-2">{dni}</td>
-            <td className="border px-4 py-2">{correo}</td>
-            <td className="border px-4 py-2">{celular}</td>
-            <td className="border px-4 py-2">{distrito}</td>
-            <td className="border px-4 py-2">{direccion}</td>
+            <td className="border px-4 py-2">{docNum}</td>
             <td className="border px-4 py-2 ">
                 <button
                     type="button"
@@ -141,4 +132,4 @@ const TablaApoderado = ({item}) => {
     )
 }
 
-export default TablaApoderado
+export default TablaAlumno

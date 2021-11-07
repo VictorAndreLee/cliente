@@ -1,12 +1,13 @@
 import React from 'react'
 import Layout from '../../components/Layout/Layout';
+import Alumno from '../../components/Alumno/Alumno';
 
-const Alumno = () => {
+const Alumnos = () => {
     return (
         <Layout>
-            <h1>Alumno</h1>
+            <Alumno />
         </Layout>
     )
 }
 
-export default Alumno
+export default Alumnos

@@ -4,8 +4,7 @@ import Swal from "sweetalert2";
 import { Formik } from "formik";
 import { useRouter } from "next/router";
 import { useQuery, gql, useMutation } from "@apollo/client";
-
-import * as Yup from "yup";
+import * as Yup from 'yup';
 
 const OBTENER_CURSO = gql`
   query obtenerCurso($id: ID!) {

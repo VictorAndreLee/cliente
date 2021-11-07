@@ -5,21 +5,21 @@ import { useMutation, useQuery, gql } from '@apollo/client';
 
 import Router from 'next/router';
 
-const ELIMINAR_APODERADO = gql`
-    mutation eliminarApoderado($id: ID!) {
-    eliminarApoderado(id: $id)
+const ELIMINAR_PROFESOR = gql`
+    mutation eliminarProfesor($id: ID!) {
+    eliminarProfesor(id: $id)
     }
 `;
 
-const OBTENER_APODERADOS = gql`
-    query obtenerApoderados {
-    obtenerApoderados {
+const OBTENER_PROFESORES = gql`
+    query obtenerProfesores {
+    obtenerProfesores {
         id
         nombre
         apellido
         dni
-        correo
         celular
+        correo
         nacimiento
         distrito
         direccion
@@ -28,7 +28,7 @@ const OBTENER_APODERADOS = gql`
     }
 `;
 
-const TablaApoderado = ({item}) => {
+const TablaProfesor = ({item}) => {
 
     // Destructior item
     const { 
@@ -36,23 +36,23 @@ const TablaApoderado = ({item}) => {
         nombre,
         apellido,
         dni,
-        correo,
         celular,
+        correo,
         nacimiento,
         distrito,
         direccion } = item;
 
     // Utilizar Mutation
-    const [ eliminarApoderado ] = useMutation(ELIMINAR_APODERADO, {
+    const [ eliminarProfesor ] = useMutation(ELIMINAR_PROFESOR, {
         update(cache) {
             // Obtener una copia del objeto de cache
-            const { obtenerApoderados } = cache.readQuery({ query: OBTENER_APODERADOS });
+            const { obtenerProfesores } = cache.readQuery({ query: OBTENER_PROFESORES });
 
             // Reescribir el cache
             cache.writeQuery({
-                query: OBTENER_APODERADOS,
+                query: OBTENER_PROFESORES,
                 data: {
-                    obtenerApoderados : obtenerApoderados.filter( obtenerApoderados => obtenerApoderados.id !== id)
+                    obtenerProfesores : obtenerProfesores.filter( obtenerProfesores => obtenerProfesores.id !== id)
                 }
             })
         }
@@ -74,7 +74,7 @@ const TablaApoderado = ({item}) => {
             //   console.log('eliminando', id);
                 try {
                     // Eliminar por ID
-                    const { data } = await eliminarApoderado({
+                    const { data } = await eliminarProfesor({
                         variables:{
                             id: id
                         }
@@ -84,7 +84,7 @@ const TablaApoderado = ({item}) => {
                     // console.log(data);
                     Swal.fire(
                         'Eliminado',
-                        data.eliminarApoderado,
+                        data.eliminarProfesor,
                         'success'
                     )
 
@@ -98,7 +98,7 @@ const TablaApoderado = ({item}) => {
 
     const editarCliente = () => {
         Router.push({
-            pathname:'/apoderados/[id]',
+            pathname:'/profesor/[id]',
             query:{ id }
         })
     }
@@ -109,8 +109,8 @@ const TablaApoderado = ({item}) => {
             <td className="border px-4 py-2">{apellido}</td>
             <td className="border px-4 py-2">{nacimiento}</td>
             <td className="border px-4 py-2">{dni}</td>
-            <td className="border px-4 py-2">{correo}</td>
             <td className="border px-4 py-2">{celular}</td>
+            <td className="border px-4 py-2">{correo}</td>
             <td className="border px-4 py-2">{distrito}</td>
             <td className="border px-4 py-2">{direccion}</td>
             <td className="border px-4 py-2 ">
@@ -141,4 +141,4 @@ const TablaApoderado = ({item}) => {
     )
 }
 
-export default TablaApoderado
+export default TablaProfesor
