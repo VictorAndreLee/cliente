@@ -45,17 +45,17 @@ const MenuSider = (props) => {
        
         <Menu.Item key="g">
           <QrcodeOutlined />
-          <span className="nav-text"><Link href="#"><a href="#">Programación</a></Link></span>
+          <span className="nav-text"><Link href="#"><a>Programación</a></Link></span>
         </Menu.Item>
 
         <Menu.Item key="h">
           <UserOutlined />
-          <span className="nav-text"><Link href="#"><a href="#">Matrícula</a></Link></span>
+          <span className="nav-text"><Link href="#"><a>Matrícula</a></Link></span>
         </Menu.Item>
 
         <Menu.Item key="i">
           <DollarCircleOutlined />
-          <span className="nav-text"><Link href="#"><a href="#">Ingresos</a></Link></span>
+          <span className="nav-text"><Link href="#"><a>Ingresos</a></Link></span>
         </Menu.Item>
       </Menu>
     </Sider>

@@ -113,6 +113,7 @@ const Login = () => {
             <input
               id="password"
               type="password"
+              autoComplete="true"
               required
               placeholder="Ingresar Contraseña Usuario"
               className="login--form__input"

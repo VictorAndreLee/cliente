@@ -3,6 +3,7 @@
 @import url("../css/slidebar.css");
 @import url("../css/Layout.css");
 @import url("../css/MenuSider.css");
+@import url("../css/Pagina.css");
 @import url("../css/MenuTop.css");
 @tailwind base;
 @tailwind components;

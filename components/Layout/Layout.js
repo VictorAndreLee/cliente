@@ -5,6 +5,7 @@ import { gql, useQuery } from '@apollo/client';
 import { Layout } from "antd";
 import MenuSider from "./MenuSider";
 import MenuTop from "./MenuTop";
+import Login from "../Login";
 // import DoctorContext from "../../context/doctor/DoctorContext";
 // import MenuSiderDoct from "./MenuSiderDoct";
 
@@ -14,6 +15,7 @@ const OBTENER_USUARIO = gql`
             id
             nombre
             apellido
+            tipoUsuario
         }
     }
 `;
@@ -48,6 +50,9 @@ const LayoutA = ({ children }) => {
   if(loading) return null;
   if (error) return `Error! ${error}`;
   const { obtenerUsuario } = data;
+  
+  if (Object.is(obtenerUsuario,undefined) || Object.is(obtenerUsuario,null) || !localStorage.getItem("token")) return (<Login />)
+  
   // const { tipoUsuario } = obtenerUsuario
   // if(Object.keys(doctor).length === 0) {
   //   obtenerDataDoctor(obtenerUsuario)
@@ -56,7 +61,7 @@ const LayoutA = ({ children }) => {
     <>
         <Head>
           <title>Señor del Luren</title>
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.css" integrity="sha512-oHDEc8Xed4hiW6CxD7qjbnI+B07vDdX7hEPTvn9pSZO1bcRqHp8mj9pyr+8RVC2GmtEfI2Bi9Ke9Ass0as+zpg==" crossOrigin="anonymous" referrerPolicy="no-referrer" />
           <link rel="stylesheet"
             href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css"/>
         </Head>

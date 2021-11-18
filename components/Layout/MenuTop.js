@@ -32,6 +32,7 @@ const MenuTop = (props) => {
   if(loading) return null;
   const { obtenerUsuario } = data
   const {nombre, apellido} = obtenerUsuario;
+  // if (Object.is(obtenerUsuario,undefined) || Object.is(obtenerUsuario,null) || !localStorage.getItem("token")) return (<Login />);
 
   return (
     <div className="menu-top">
