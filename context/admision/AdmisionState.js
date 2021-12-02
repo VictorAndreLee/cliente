@@ -4,7 +4,9 @@ import AdmisionReducer from "./AdmisionReducer";
 
 import {
     SUBIR_COPIA_POSTULACION,
-    SUBIR_ARCHIVO_MATRICULA
+    SUBIR_ARCHIVO_MATRICULA,
+    GUARDAR_USUARIO,
+    CERRAR_SESION
 } from "../../types";
 
 const AdmisionState = ({ children }) => {
@@ -12,9 +14,22 @@ const AdmisionState = ({ children }) => {
     const initialState = {
         postulacionFile: [],
         matriculaFile: [],
+        usuario: {},
     };
     
     const [state, dispatch] = useReducer(AdmisionReducer, initialState);
+
+    const guardarUsuario = data => {
+        dispatch({
+          type: GUARDAR_USUARIO,
+          payload: data
+        });
+    };
+    const cerrarSesion = () => {
+        dispatch({
+          type: CERRAR_SESION,
+        });
+    };
     
     const subirArchivoPostulacion = data => {
       // console.log("perfil",data);
@@ -36,8 +51,11 @@ const AdmisionState = ({ children }) => {
           value={{
             postulacionFile: state.postulacionFile,
             matriculaFile: state.matriculaFile,
+            usuario: state.usuario,
             subirArchivoPostulacion,
-            subirArchivoMatricula
+            subirArchivoMatricula,
+            guardarUsuario,
+            cerrarSesion
           }}
         >
           {children}

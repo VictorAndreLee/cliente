@@ -12,14 +12,24 @@ const DropzoneCopia = () => {
     } = admisionContext;
     
     const onDrop = useCallback((acceptedFiles, fileRejections) => {
+        // console.log(acceptedFiles);
         if(postulacionFile.length > 2 ) {
+            
             setTimeout(() => {
            setMostrarAdvertencia(false) 
         }, 3000); 
         return setMostrarAdvertencia(true);
         }
         if(fileRejections.length > 0) return null
-        subirArchivoPostulacion(acceptedFiles[0])
+
+        
+        // postulacionFile.map(item => {
+        //     console.log("awaasdsadsa");
+        //     if(acceptedFiles[0].name === item.name) return setMostrarAdvertencia(true);
+        // })
+        acceptedFiles.map(item => {
+            subirArchivoPostulacion(item)
+        })
         
     })
 

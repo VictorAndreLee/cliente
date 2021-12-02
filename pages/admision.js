@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/Page/LayoutPage";
+import Layout from "../components/PageComponents/LayoutPage";
 import Image from "next/dist/client/image";
 import hoja from "../img/hoja.svg";
 

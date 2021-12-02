@@ -1,5 +1,5 @@
 import React from "react";
-import Layout from "../components/Page/LayoutPage";
+import Layout from "../components/PageComponents/LayoutPage";
 
 const Nosotros = () => {
   return (

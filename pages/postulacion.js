@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import Layout from "../components/Page/LayoutPage";
+import React, { useState, useContext, useEffect } from "react";
+import Layout from "../components/PageComponents/LayoutPage";
 import { gql, useQuery } from "@apollo/client";
 import hoja from "../img/hoja.svg";
 import Image from "next/dist/client/image";
@@ -17,17 +17,18 @@ const OBTENER_USUARIO = gql`
 `;
 
 const PostulacionScreen = () => {
-  const { data, loading, erro } = useQuery(OBTENER_USUARIO);
+
+  const { data, loading, error } = useQuery(OBTENER_USUARIO);
   const [estado1, setEstado1] = useState("Pendiente");
   const [estado2, setEstado2] = useState("Bloqueado");
   const [estado3, setEstado3] = useState("Rechazado");
   const [estado4, setEstado4] = useState("Aprobado");
-  const [estado5, setEstado5] = useState("Pendiente a revisión");
-  const [estado6, setEstado7] = useState("Pendiente a programación");
+  const [estado5, setEstado5] = useState("RevisionPendiente");
+  const [estado6, setEstado7] = useState("ProgramacionPendiente");
 
   if (loading) return "Cargando...";
   const { obtenerUsuario } = data;
-  const { nombre, apellido, email } = obtenerUsuario;
+
 
   const icons = (estado) => {
     if (estado === "Pendiente") {
@@ -51,7 +52,7 @@ const PostulacionScreen = () => {
         </div>
       );
     }
-    if (estado === "Pendiente a revisión") {
+    if (estado === "RevisionPendiente") {
       return (
         <div
           className="flex justify-start ml-20 text-left text-blue-500"
@@ -128,7 +129,7 @@ const PostulacionScreen = () => {
         </div>
       );
     }
-    if (estado === "Pendiente a programación") {
+    if (estado === "ProgramacionPendiente") {
       return (
         <div className="flex justify-start ml-20 text-left text-blue-600">
           <svg
@@ -157,12 +158,12 @@ const PostulacionScreen = () => {
       <section className="conte__admi">
         <div className="conte__admi--espacio">
           <div className="conte__admi--espacio--titulo">
-            <h1 className="mb-10 text-3xl text-black font-semibold mt-32 border-b-2 pb-3">
+            {/* <h1 className="mb-10 text-3xl text-black font-semibold mt-32 border-b-2 pb-3">
               Bienvenido{" "}
               <span className="text-green-500">
                 {nombre} {apellido}
               </span>
-            </h1>
+            </h1> */}
             <p>Proceso de admisión para ser parte de la Gran Familia LURINA</p>
           </div>
 
@@ -170,7 +171,7 @@ const PostulacionScreen = () => {
             <dl className="preg-resp">
               <dt>Postulación</dt>
               <div className="flex justify-between">
-                {icons(estado1)}
+                {icons(estado5)}
                 <div className="flex text-green-600 font-bold transition-all ease-out delay-75 duration-500 transform hover:-translate-y-1">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -231,7 +232,7 @@ const PostulacionScreen = () => {
                       clipRule="evenodd"
                     />
                   </svg>
-                  <Link href="/entrega-copias">
+                  <Link href="/matricula-copias">
                     <a className="hover:text-green-600">Entregar documentos</a>
                   </Link>
                 </div>

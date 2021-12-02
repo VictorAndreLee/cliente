@@ -24,6 +24,8 @@ const NUEVO_APODERADO = gql`
   }
 `;
 
+
+
 const OBTENER_APODERADOS = gql`
   query obtenerApoderados {
     obtenerApoderados {

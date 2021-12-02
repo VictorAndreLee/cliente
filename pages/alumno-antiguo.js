@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../components/Page/LayoutPage'
-import RegistroApoderado from '../components/Page/RegistroApoderado'
+import Layout from '../components/PageComponents/LayoutPage'
+import RegistroApoderado from '../components/PageComponents/RegistroApoderado'
 
 const AlumnoAntiguo = () => {
     return (

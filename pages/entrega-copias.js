@@ -1,6 +1,6 @@
 import React from 'react'
-import Layout from '../components/Page/LayoutPage';
-import Postulacion from "../components/Page/Postulacion";
+import Layout from '../components/PageComponents/LayoutPage';
+import Postulacion from "../components/PageComponents/Postulacion";
 
 
 const EntregaCopias = () => {

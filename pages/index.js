@@ -1,5 +1,6 @@
-import Layout from '../components/Page/LayoutPage';
+import Layout from '../components/PageComponents/LayoutPage';
 import telefono from "../img/telefono.svg";
+import Iframe from 'react-iframe'
 import formacion from "../img/Formación.PNG";
 import inicial from "../img/Inicial.jpg";
 import primaria from "../img/Primaria.jpg";
@@ -122,16 +123,21 @@ const Index = () => (
       <div className="conte__ubicacion--1">
         <div className="conte__ubicacion--1_img"></div>
 
-        <div className="conte__ubicacion--1_maps">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.8177925810032!2d-76.98607265000669!3d-12.19279804791064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b9be57296217%3A0x498ca9fedc88d258!2sColegio%20Se%C3%B1or%20De%20Luren!5e0!3m2!1ses!2spe!4v1636521077327!5m2!1ses!2spe"
-            width="450"
-            height="480"
+        {/* <div className="conte__ubicacion--1_maps">
+          <Iframe  
+            url="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3899.8177925810032!2d-76.98607265000669!3d-12.19279804791064!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105b9be57296217%3A0x498ca9fedc88d258!2sColegio%20Se%C3%B1or%20De%20Luren!5e0!3m2!1ses!2spe!4v1636521077327!5m2!1ses!2spe"
+            id="maps"
+            width="100%"
+            height="100%"
             style={{ border: 0 }}
-            allowFullScreen={true}
+            allowFullScreen
             loading="lazy"
-          ></iframe>
-        </div>
+            onScroll={{
+              passive: true,
+              capture: true,
+            }}
+          />
+        </div> */}
       </div>
     </section>
 

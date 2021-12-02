@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react'
+import React, { useState, useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 import AdmisionContext from '../../context/admision/AdmisionContext';
 
@@ -11,6 +11,8 @@ const Dropzone = () => {
         matriculaFile 
     } = admisionContext;
     const onDrop = useCallback((acceptedFiles, fileRejections) => {
+
+
         if(matriculaFile.length > 6 ) {
             setTimeout(() => {
            setMostrarAdvertencia(false) 
@@ -18,7 +20,9 @@ const Dropzone = () => {
         return setMostrarAdvertencia(true);
         }
         if(fileRejections.length > 0) return null
-        subirArchivoMatricula(acceptedFiles[0])
+        acceptedFiles.map(item => {
+            subirArchivoMatricula(item)
+        })
         
     })
 

@@ -1,8 +1,8 @@
 import React from 'react';
-import Layout from '../components/Page/LayoutPage'
+import Layout from '../components/PageComponents/LayoutPage'
 import Link from 'next/dist/client/link';
-import RegistroApoderado from '../components/Page/RegistroApoderado';
-import ApoderadoLogin from '../components/Page/ApoderadoLogin';
+import RegistroApoderado from '../components/PageComponents/RegistroApoderado';
+import ApoderadoLogin from '../components/PageComponents/ApoderadoLogin';
 
 const AlumnoNuevo = () => {
     return (

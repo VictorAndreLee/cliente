@@ -3,6 +3,7 @@
   background-color: #009637;
   display: flex;
   flex-direction: row;
+  align-items: center;
   justify-content: space-between;
   color: aliceblue;
   font-size: 13px;
@@ -408,7 +409,7 @@
   align-items: center;
   font-size: 15px;
 }
-@media (max-width: 1073px) {
+@media all and (max-width: 1073px) {
   .conte__bienvenida {
     width: 100%;
     height: 700px;
@@ -462,7 +463,7 @@
   }
 }
 
-@media (max-width: 961px) {
+@media all and (max-width: 961px) {
   .conte__ubicacion--1_img {
     display: none;
   }
@@ -480,7 +481,7 @@
   }
 }
 
-@media (max-width: 648px) {
+@media all and (max-width: 648px) {
   .conte__admi--espacio {
     display: flex;
     flex-direction: column;
@@ -495,7 +496,7 @@
   }
 }
 
-@media (max-width: 589px) {
+@media all and (max-width: 589px) {
   .conte--nave .nave--lista a {
     font-size: 12px;
 
@@ -521,14 +522,14 @@
   }
 }
 
-@media (max-width: 494px) {
+@media all and (max-width: 494px) {
   .conte--nave .nave--lista a {
     font-size: 12px;
 
     padding: 15px 5px;
   }
 
-  @media (max-width: 464px) {
+  @media all and (max-width: 464px) {
     .conte__admi {
       margin-bottom: 25px;
     }

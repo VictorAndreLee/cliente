@@ -1,8 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { gql, useMutation } from "@apollo/client";
+import { gql, useMutation, useLazyQuery } from "@apollo/client";
 import { useRouter } from "next/router";
+import AdmisionContext from "../../context/admision/AdmisionContext";
+
+const OBTENER_USUARIO = gql`
+  query obtenerUsuario {
+    obtenerUsuario {
+      id
+      nombre
+      apellido
+      tipoUsuario
+    }
+  }
+`;
 
 const AUTENTICAR_USUARIO = gql`
   mutation autenticarUsuario($input: AutenticarInput) {
@@ -16,9 +28,17 @@ const ApoderadoLogin = () => {
   const router = useRouter();
 
   const [mensaje, guardarMensaje] = useState(null);
-
+  const admisionContext = useContext(AdmisionContext);
+  const { guardarUsuario } = admisionContext;
+  const [getUser, { loading, error, data }] = useLazyQuery(OBTENER_USUARIO);
   //Mutation para crear nuevos usuarios en apollo
   const [autenticarUsuario] = useMutation(AUTENTICAR_USUARIO);
+
+  useEffect(() => {
+    if (!data) return null
+    localStorage.setItem("user", data);
+    guardarUsuario(data);
+  }, [data]);
 
   const formik = useFormik({
     initialValues: {
@@ -50,11 +70,14 @@ const ApoderadoLogin = () => {
         //Guardar el token en localstorage
         const { token } = data.autenticarUsuario;
         localStorage.setItem("token", token);
+         
+        // Consultar obtener usuario
+        getUser() 
         //Redireccionar hacia clientes
-        setTimeout(() => {
+        // setTimeout(() => {
           guardarMensaje(null);
           router.push("/postulacion");
-        }, 2000);
+        // }, 2000);
       } catch (error) {
         guardarMensaje(error.message.replace("GraphQL error: ", ""));
         //console.log(error);
