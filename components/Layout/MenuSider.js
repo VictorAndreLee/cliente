@@ -31,21 +31,32 @@ const MenuSider = (props) => {
         </Menu.Item>
         <SubMenu icon={<FileTextOutlined />} title="Registros" key="x">
         
+          <Menu.Item key="c"><Link href="/alumno">Alumnos</Link></Menu.Item>
+          
           <Menu.Item key="b"><Link href="/apoderados">Apoderados</Link></Menu.Item>
-        
-          <Menu.Item key="c"><Link href="/alumno">Alumno</Link></Menu.Item>
 
           <Menu.Item key="d"><Link href="/cursos">Cursos</Link></Menu.Item>
 
           <Menu.Item key="e"><Link href="/grados">Grados</Link></Menu.Item>
           
           <Menu.Item key="l"><Link href="/profesor">Profesores</Link></Menu.Item>
+
+          <Menu.Item key=","><Link href="/periodos">Periodo Academico</Link></Menu.Item>
+
         </SubMenu>
-       
-        <Menu.Item key="g">
-          <QrcodeOutlined />
-          <span className="nav-text"><Link href="#"><a>Programación</a></Link></span>
-        </Menu.Item>
+
+        
+
+        <SubMenu icon={<QrcodeOutlined />} title="Asignacion" key="g">
+        
+          <Menu.Item key="1"><Link href="">Salones</Link></Menu.Item>
+        
+          <Menu.Item key="2"><Link href="">Profesores por Curso</Link></Menu.Item>
+
+        </SubMenu>
+
+
+        
 
         <Menu.Item key="h">
           <UserOutlined />
@@ -59,7 +70,7 @@ const MenuSider = (props) => {
 
         <Menu.Item key="i">
           <DollarCircleOutlined />
-          <span className="nav-text"><Link href="#"><a>Ingresos</a></Link></span>
+          <span className="nav-text"><Link href="#"><a>Usuarios</a></Link></span>
         </Menu.Item>
       </Menu>
     </Sider>

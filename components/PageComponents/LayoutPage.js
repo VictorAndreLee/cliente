@@ -135,11 +135,14 @@ const Layout = ({ children }) => {
                   <Link href="/alumno-page">
                     <p className="cursor-pointer">Soy Alumno</p>
                   </Link>
-                </>
+               </>
+              
               )
+             
             }
-          </div>
+            </div>
         </header>
+     
 
         <nav className="conte--nave">
           <div className="nave--img">
@@ -147,9 +150,10 @@ const Layout = ({ children }) => {
           </div>
           <div className="nave--lista">
             <Link href="/">
-              <a>BIENVENIDOS</a>
+              <a>INICIO</a>
             </Link>
             {router.asPath === "/" || router.asPath.includes("#") ? (
+              
               <Link href="#niveles">
                 <a>NIVELES</a>
               </Link>
@@ -157,6 +161,7 @@ const Layout = ({ children }) => {
             <Link href="/nosotros">
               <a>NOSOTROS</a>
             </Link>
+           
 
             <Link href={token ? '/postulacion' : "/admision"}>
               <a>ADMISIÓN</a>
