@@ -1,10 +1,13 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react';
 import DropzoneCopia from './DropzoneCopia';
 import { useRouter } from 'next/router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle } from '@fortawesome/free-solid-svg-icons';
 import AdmisionContext from '../../context/admision/AdmisionContext';
 import { gql, useMutation, useQuery } from "@apollo/client";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const OBTENER_USUARIO = gql`
   query obtenerUsuario {
@@ -56,7 +59,9 @@ const Postulacion = () => {
           const guardarAdmision = await nuevaAdmision({
             variables: {
               input: {
-                apoderado: obtenerUsuario.id,
+                idApoderado: obtenerUsuario.id,
+                nombreApoderado: obtenerUsuario.nombre,
+                apellidoApoderado: obtenerUsuario.apellido,
                 estadoPostulacion: 'Pendiente',
                 estadoProgramacion: 'Bloqueado',
                 estadoFirma: 'Bloqueado',
@@ -67,7 +72,12 @@ const Postulacion = () => {
               file3: postulacionFile[2],
             }
           })
-          console.log(guardarAdmision.data);
+          toast.success(guardarAdmision.data.nuevaAdmision, {
+            autoClose: 5000,
+          });
+          setTimeout(() => {
+            router.push('/postulacion')
+          }, 5000);
         } catch (error) {
           console.log(error);
         }
@@ -100,6 +110,7 @@ const Postulacion = () => {
 
     return (
         <div className="md:w-4/5 xl:w-full h-full mx-auto mb-32">
+          <ToastContainer />
           <div className="lg:flex md:shadow-lg p-5 bg-white rounded-lg text-gray-700 py-14">
             <DropzoneCopia />
             <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0">

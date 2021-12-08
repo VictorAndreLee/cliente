@@ -3,6 +3,7 @@ import { Menu, Layout } from "antd";
 import {
   DollarCircleOutlined,
   FileTextOutlined,
+  AuditOutlined,
   HomeOutlined,
   QrcodeOutlined,
   UserOutlined,
@@ -37,8 +38,6 @@ const MenuSider = (props) => {
           <Menu.Item key="d"><Link href="/cursos">Cursos</Link></Menu.Item>
 
           <Menu.Item key="e"><Link href="/grados">Grados</Link></Menu.Item>
-
-          <Menu.Item key="f"><Link href="/cursos">Cursos</Link></Menu.Item>
           
           <Menu.Item key="l"><Link href="/profesor">Profesores</Link></Menu.Item>
         </SubMenu>
@@ -51,6 +50,11 @@ const MenuSider = (props) => {
         <Menu.Item key="h">
           <UserOutlined />
           <span className="nav-text"><Link href="#"><a>Matrícula</a></Link></span>
+        </Menu.Item>
+
+        <Menu.Item key="z">
+          <AuditOutlined />
+          <span className="nav-text"><Link href="/postulacion/revision"><a>Postulaciones</a></Link></span>
         </Menu.Item>
 
         <Menu.Item key="i">

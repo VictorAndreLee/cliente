@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
-import Layout from "../components/PageComponents/LayoutPage";
+import Layout from "../../components/PageComponents/LayoutPage";
 import { gql, useQuery } from "@apollo/client";
-import hoja from "../img/hoja.svg";
+import hoja from "../../img/hoja.svg";
 import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
 
