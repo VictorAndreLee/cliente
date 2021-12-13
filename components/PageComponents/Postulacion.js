@@ -45,6 +45,7 @@ const Postulacion = () => {
     useEffect(() => {
       refetch();
       setContador(postulacionFile.length)
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [postulacionFile]);
 
     if (loading) return null; 

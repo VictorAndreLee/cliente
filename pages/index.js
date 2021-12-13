@@ -13,7 +13,6 @@ import Image from "next/dist/client/image";
 const Index = () => (
   <Layout>
 
-
     <section className="conte__banner">
 
      <div className="conte__banner-titu" >

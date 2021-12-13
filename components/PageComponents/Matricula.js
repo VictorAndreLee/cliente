@@ -43,6 +43,7 @@ const Matricula = () => {
   useEffect(() => {
     refetch()
     setContador(matriculaFile.length)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [matriculaFile]);
 
   const redirigirPanel = () => {

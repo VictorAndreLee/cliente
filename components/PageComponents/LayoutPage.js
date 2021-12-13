@@ -29,6 +29,7 @@ const Layout = ({ children }) => {
 
   useEffect(() => {
     refetch();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   
   if(loading) return "Cargando...";
@@ -92,7 +93,7 @@ const Layout = ({ children }) => {
         <header className="conte__header py-7">
           <div className="conte__header-p1">
             {/* { Object.keys(usuario).length > 0 && userProfile()} */}
-            { token && userProfile()}
+            { token ? userProfile() : null}
           </div>
           <div className="conte__header-p2">
             

@@ -39,6 +39,7 @@ const Reunion = () => {
     const { data, loading, error, refetch } = useQuery(OBTENER_ADMISIONES);
     useEffect(() => {
         refetch()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     if(loading) return "cargando..."
 
