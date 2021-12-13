@@ -1,34 +1,53 @@
 import React, { useState, useContext, useEffect } from "react";
 import Layout from "../../components/PageComponents/LayoutPage";
-import { gql, useQuery } from "@apollo/client";
+import { gql, useLazyQuery, useQuery } from "@apollo/client";
 import hoja from "../../img/hoja.svg";
 import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
 
-const OBTENER_USUARIO = gql`
-  query obtenerUsuario {
-    obtenerUsuario {
+const OBTENER_APODERADO_ESTADO = gql`
+   query obtenerApoderadoEstado {
+    obtenerApoderadoEstado {
       id
-      nombre
-      apellido
-      tipoUsuario
+      idApoderado
+      estadoAdmision
+      estadoDniEst
+      estadoDniApo
+      estadoLibreta
+      estadoProgramacion
+      estadoFirma
+      estadoMatricula
     }
   }
 `;
 
 const PostulacionScreen = () => {
 
-  const { data, loading, error } = useQuery(OBTENER_USUARIO);
-  const [estado1, setEstado1] = useState("Pendiente");
-  const [estado2, setEstado2] = useState("Bloqueado");
-  const [estado3, setEstado3] = useState("Rechazado");
-  const [estado4, setEstado4] = useState("Aprobado");
-  const [estado5, setEstado5] = useState("RevisionPendiente");
-  const [estado6, setEstado7] = useState("ProgramacionPendiente");
-
+  const [Admision, setAdmision] = useState('Pendiente')
+  const [Programacion, setProgramacion] = useState('Bloqueado')
+  const [Matricula, setMatricula] = useState('Bloqueado')
+  const [Firma, setFirma] = useState('Bloqueado')
+  const { data, loading, error, refetch } = useQuery(OBTENER_APODERADO_ESTADO);
+  
+  
+  useEffect(() => {
+    if(data) {
+      const { obtenerApoderadoEstado } = data;
+      const { 
+        estadoAdmision,
+        estadoProgramacion,
+        estadoMatricula,
+        estadoFirma 
+      } = obtenerApoderadoEstado
+      setAdmision(estadoAdmision)
+      setProgramacion(estadoProgramacion)
+      setMatricula(estadoMatricula)
+      setFirma(estadoFirma)
+      console.log(obtenerApoderadoEstado);
+    }
+  }, [data]);
+  
   if (loading) return "Cargando...";
-  const { obtenerUsuario } = data;
-
 
   const icons = (estado) => {
     if (estado === "Pendiente") {
@@ -52,7 +71,7 @@ const PostulacionScreen = () => {
         </div>
       );
     }
-    if (estado === "RevisionPendiente") {
+    if (estado === "Revisión pendiente") {
       return (
         <div
           className="flex justify-start ml-20 text-left text-blue-500"
@@ -129,7 +148,7 @@ const PostulacionScreen = () => {
         </div>
       );
     }
-    if (estado === "ProgramacionPendiente") {
+    if (estado === "Programacion pendiente") {
       return (
         <div className="flex justify-start ml-20 text-left text-blue-600">
           <svg
@@ -150,6 +169,9 @@ const PostulacionScreen = () => {
     }
   };
 
+  console.log(Admision);
+  console.log(Programacion);
+  console.log(Matricula);
   return (
     <Layout>
       {/* <div className="md:w-4/5 xl:w-3/5 h-full mx-auto mb-32 bg-opacity-20">
@@ -171,23 +193,45 @@ const PostulacionScreen = () => {
             <dl className="preg-resp">
               <dt>Postulación</dt>
               <div className="flex justify-between">
-                {icons(estado5)}
+                {icons(Admision)}
                 <div className="flex text-green-600 font-bold transition-all ease-out delay-75 duration-500 transform hover:-translate-y-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <Link href="/entrega-copias">
-                    <a className="hover:text-green-600">Entregar documentos</a>
-                  </Link>
+                  
+                  {
+                    Admision === 'Pendiente' 
+                    ? 
+                    (
+                      <>
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="h-5 w-5"
+                          viewBox="0 0 20 20"
+                          fill="currentColor"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                      <Link href="/entrega-copias">
+                        <a className="hover:text-green-600">Entregar documentos</a>
+                      </Link>
+                    </>
+                    )
+                    :
+                    (
+                      <>
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                       <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                        <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                      </svg>
+                      <Link href="/postulacion/estado-postulacion">
+                        <a className="hover:text-green-600">Ver estado de revisión</a>
+                      </Link>
+                      </>
+                    )
+                  }
+                  
                 </div>
               </div>
               <dd>
@@ -196,45 +240,51 @@ const PostulacionScreen = () => {
               </dd>
 
               <dd>
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia del DNI del estudiante.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia del DNI del padre de familia.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia de la libreta de notas o informe de progreso.
               </dd>
 
               <dt>Agendaremos una entrevista con el área de psicología.</dt>
-              {icons(estado2)}
-              <dd>Lorem ipsum dolor sit amet consectetur.</dd>
-              <dt>
+              {icons(Programacion)}
+              <dd>Se contactará con usted en un plazo menos de 48 horas para agendar una entrevista</dd>
+              {/* <dt>
                 Firma del conocimiento y conformidad del reglamento interno que
                 se encuentra en la página web del colegio.
               </dt>
-              {icons(estado3)}
-              <dd>Lorem ipsum dolor sit amet.</dd>
+              {icons(Firma)}
+              <dd>Lorem ipsum dolor sit amet.</dd> */}
 
               <dt>MATRÍCULA</dt>
               <div className="flex justify-between">
-                {icons(estado1)}
+                {icons(Matricula)}
                 <div className="flex text-green-600 font-bold transition-all ease-out delay-75 duration-500 transform hover:-translate-y-1">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <Link href="/matricula-copias">
-                    <a className="hover:text-green-600">Entregar documentos</a>
-                  </Link>
+                  {Programacion === 'Aprobado' && (
+                    <>
+                     <svg
+                     xmlns="http://www.w3.org/2000/svg"
+                     className="h-5 w-5"
+                     viewBox="0 0 20 20"
+                     fill="currentColor"
+                   >
+                     <path
+                       fillRule="evenodd"
+                       d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                       clipRule="evenodd"
+                     />
+                   </svg>
+                   <Link href="/matricula-copias">
+                     <a className="hover:text-green-600">Entregar documentos</a>
+                   </Link>
+                   </>
+                  )}
+                  
+                  
                 </div>
               </div>
               <dd>
@@ -242,19 +292,25 @@ const PostulacionScreen = () => {
                 lo siguiente:
               </dd>
               <dd>
-                <Image src={hoja} /> Ficha única de matrícula de SIAGIE.
+                <Image src={hoja} alt="image" /> Ficha única de matrícula de SIAGIE.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Constancia de matrícula de SIAGIE.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image" />
                 Certificado de estudios de años anteriores.
                 <br />
-                <Image src={hoja} />
-                Resolución de traslado.
+                <Image src={hoja} alt="image"/>
+                Constancia de no adeudo
                 <br />
-                <Image src={hoja} />
-                Dos fotos tamaño carnet.
+                <Image src={hoja} alt="image"/>
+                Libreta de estudios
+                <br />
+                <Image src={hoja} alt="image"/>
+                Libreta de Comportamiento
+                <br />
+                <Image src={hoja} alt="image"/>
+                Constancia de traslado
               </dd>
             </dl>
           </div>

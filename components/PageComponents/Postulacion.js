@@ -18,6 +18,7 @@ const OBTENER_USUARIO = gql`
       tipoUsuario
     }
   }
+
 `;
 
 const NUEVA_ADMISION = gql`
@@ -37,7 +38,8 @@ const Postulacion = () => {
     const admisionContext = useContext(AdmisionContext);
     
     const { 
-        postulacionFile
+        postulacionFile,
+        borrarArchivosPostulacion
     } = admisionContext;
 
     useEffect(() => {
@@ -62,7 +64,7 @@ const Postulacion = () => {
                 idApoderado: obtenerUsuario.id,
                 nombreApoderado: obtenerUsuario.nombre,
                 apellidoApoderado: obtenerUsuario.apellido,
-                estadoPostulacion: 'Pendiente',
+                estadoAdmision: 'Pendiente',
                 estadoProgramacion: 'Bloqueado',
                 estadoFirma: 'Bloqueado',
                 estadoMatricula: 'Bloqueado'
@@ -72,12 +74,13 @@ const Postulacion = () => {
               file3: postulacionFile[2],
             }
           })
+          borrarArchivosPostulacion()
           toast.success(guardarAdmision.data.nuevaAdmision, {
-            autoClose: 5000,
+            autoClose: 3000,
           });
           setTimeout(() => {
             router.push('/postulacion')
-          }, 5000);
+          }, 3000);
         } catch (error) {
           console.log(error);
         }

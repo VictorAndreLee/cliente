@@ -1,12 +1,15 @@
 import React, { useReducer } from "react";
 import AdmisionContext from "./AdmisionContext";
 import AdmisionReducer from "./AdmisionReducer";
+import { useRouter } from "next/router";
 
 import {
     SUBIR_COPIA_POSTULACION,
     SUBIR_ARCHIVO_MATRICULA,
     GUARDAR_USUARIO,
-    CERRAR_SESION
+    CERRAR_SESION,
+    BORRAR_ARCHIVOS_POSTULACION,
+    BORRAR_ARCHIVOS_MATRICULA
 } from "../../types";
 
 const AdmisionState = ({ children }) => {
@@ -26,6 +29,7 @@ const AdmisionState = ({ children }) => {
         });
     };
     const cerrarSesion = () => {
+      
         dispatch({
           type: CERRAR_SESION,
         });
@@ -36,6 +40,18 @@ const AdmisionState = ({ children }) => {
         dispatch({
           type: SUBIR_COPIA_POSTULACION,
           payload: data
+        });
+      };
+    const borrarArchivosPostulacion = () => {
+      // console.log("perfil",data);
+        dispatch({
+          type: BORRAR_ARCHIVOS_POSTULACION,
+        });
+      };
+    const borrarArchivosMatricula = () => {
+      // console.log("perfil",data);
+        dispatch({
+          type: BORRAR_ARCHIVOS_MATRICULA,
         });
       };
 
@@ -52,6 +68,8 @@ const AdmisionState = ({ children }) => {
             postulacionFile: state.postulacionFile,
             matriculaFile: state.matriculaFile,
             usuario: state.usuario,
+            borrarArchivosMatricula,
+            borrarArchivosPostulacion,
             subirArchivoPostulacion,
             subirArchivoMatricula,
             guardarUsuario,

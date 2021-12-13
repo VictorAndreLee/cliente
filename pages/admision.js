@@ -22,13 +22,13 @@ const Admision = () => {
               </dd>
 
               <dd>
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia del DNI del estudiante.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia del DNI del padre de familia.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Copia de la libreta de notas o informe de progreso.
               </dd>
 
@@ -46,18 +46,18 @@ const Admision = () => {
                 lo siguiente:
               </dd>
               <dd>
-                <Image src={hoja} /> Ficha única de matrícula de SIAGIE.
+                <Image src={hoja} alt="image"/> Ficha única de matrícula de SIAGIE.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Constancia de matrícula de SIAGIE.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Certificado de estudios de años anteriores.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Resolución de traslado.
                 <br />
-                <Image src={hoja} />
+                <Image src={hoja} alt="image"/>
                 Dos fotos tamaño carnet.
               </dd>
             </dl>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useMutation, useQuery, gql } from "@apollo/client";
-import TablaPostulaciones from "./TablaPostulaciones";
+import ItemsMatricula from "./ItemsMatricula";
 
 const OBTENER_ADMISIONES = gql`
     query obtenerAdmisiones {
@@ -16,20 +16,28 @@ const OBTENER_ADMISIONES = gql`
             estadoProgramacion
             estadoFirma
             estadoMatricula
+        estadoFichaMatricula
+        estadoConstancia
+        estadoCertificado
+        estadoCertoNoAdeu
+        estadoLibreMatri
+        estadoComportamiento
+        estadoCopiaDNI
             copias
             constancias
             creado
         }
     }
 `;
-
-const Postulacion = () => {
+const SolicitudesMatricula = () => {
 
     const { data, loading, error } = useQuery(OBTENER_ADMISIONES);
 
     if(loading) return "cargando..."
 
     const { obtenerAdmisiones } = data;
+
+    
 
     return (
         <>
@@ -41,7 +49,7 @@ const Postulacion = () => {
                     <div className='w-2/3'>
                         {
                             obtenerAdmisiones.map(item => (
-                                <TablaPostulaciones 
+                                <ItemsMatricula 
                                     key={item.id}
                                     item={item}
                                 />     
@@ -55,4 +63,4 @@ const Postulacion = () => {
     )
 }
 
-export default Postulacion
+export default SolicitudesMatricula

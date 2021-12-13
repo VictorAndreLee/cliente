@@ -1,6 +1,8 @@
 import {
     SUBIR_COPIA_POSTULACION,
     SUBIR_ARCHIVO_MATRICULA,
+    BORRAR_ARCHIVOS_POSTULACION,
+    BORRAR_ARCHIVOS_MATRICULA,
     GUARDAR_USUARIO,
     CERRAR_SESION
 } from "../../types";
@@ -11,6 +13,16 @@ import {
       return {
         ...state,
         postulacionFile: [...state.postulacionFile, action.payload],
+      }; 
+    case BORRAR_ARCHIVOS_POSTULACION:
+      return {
+        ...state,
+        postulacionFile: [],
+      }; 
+    case BORRAR_ARCHIVOS_MATRICULA:
+      return {
+        ...state,
+        matriculaFile: [],
       }; 
     case GUARDAR_USUARIO:
       return {

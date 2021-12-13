@@ -65,7 +65,17 @@ const MenuSider = (props) => {
 
         <Menu.Item key="z">
           <AuditOutlined />
-          <span className="nav-text"><Link href="/postulacion/revision"><a>Postulaciones</a></Link></span>
+          <span className="nav-text"><Link href="/postulacion/revision-admision"><a>Postulaciones</a></Link></span>
+        </Menu.Item>
+
+        <Menu.Item key="n">
+          <AuditOutlined />
+          <span className="nav-text"><Link href="/postulacion/revision-matricula"><a>Solicitud Matrícula</a></Link></span>
+        </Menu.Item>
+
+        <Menu.Item key="m">
+          <AuditOutlined />
+          <span className="nav-text"><Link href="/reunion"><a>Reuniones</a></Link></span>
         </Menu.Item>
 
         <Menu.Item key="i">

@@ -47,8 +47,8 @@ const Dropzone = () => {
     return (
         <div className="md:flex-1 mb-3 mx-2 mt-16 lg:mt-0 flex flex-col items-center justify-center border-4 border-dashed border-gray-300 bg-gray-100 px-4">
             
-            <ul>
-                {archivos}
+            <ul className='w-8/12'>
+                <p className='text-ellipsis overflow-hidden'>{archivos}</p>
             </ul>
 
             <div {...getRootProps({ className:"dropzone w-full py-32"})}>
@@ -66,7 +66,7 @@ const Dropzone = () => {
                                 >
                                     Selecciona un archivo para subir
                                 </button>
-                                { fileRejections.length > 0 && (advertencia())}
+                                {/* { fileRejections.length > 0 && (advertencia())} */}
                                 { mostrarAdvertencia && (advertencia())}
                             </div>
                         )
