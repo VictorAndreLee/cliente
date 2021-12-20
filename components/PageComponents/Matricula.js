@@ -125,15 +125,15 @@ const estados = (estado = 'pendiente') => {
           </p>
           <ul className="py-0 my-0 font-semibold list-decimal list-inside bg-rose-200">
             <div className="flex">
-            <li>Ficha de matricula</li>
+            <li>Ficha de matricula SIAGIE</li>
             {contador > 0  ? estados("cargado") : estados()}
             </div>
             <div className="flex">
-            <li>Constancia</li>
+            <li>Constancia de matrícula SIAGIE</li>
             {contador > 1 ? estados("cargado") : estados()}
             </div>
             <div className="flex">
-            <li>Certificado de estudio</li>
+            <li>Certificado de estudios</li>
             {contador > 2 ? estados("cargado") : estados()}
 
             </div>
@@ -143,7 +143,7 @@ const estados = (estado = 'pendiente') => {
 
             </div>
             <div className="flex">
-            <li>Libreta de notas</li>
+            <li>Libreta de estudios</li>
             {contador > 4 ? estados("cargado") : estados()}
 
             </div>

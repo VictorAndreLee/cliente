@@ -36,7 +36,6 @@ const ApoderadoLogin = () => {
 
   useEffect(() => {
     if (!data) return null
-    localStorage.setItem("user", data);
     guardarUsuario(data);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data]);

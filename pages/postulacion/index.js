@@ -4,12 +4,19 @@ import { gql, useLazyQuery, useQuery } from "@apollo/client";
 import hoja from "../../img/hoja.svg";
 import Image from "next/dist/client/image";
 import Link from "next/dist/client/link";
+import Pago from "../../components/Pago";
+
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const OBTENER_APODERADO_ESTADO = gql`
    query obtenerApoderadoEstado {
     obtenerApoderadoEstado {
       id
       idApoderado
+      nombreApoderado
+      apellidoApoderado
       estadoAdmision
       estadoDniEst
       estadoDniApo
@@ -32,6 +39,7 @@ const PostulacionScreen = () => {
   
   useEffect(() => {
     if(data) {
+      refetch()
       const { obtenerApoderadoEstado } = data;
       const { 
         estadoAdmision,
@@ -54,6 +62,7 @@ const PostulacionScreen = () => {
     if (estado === "Pendiente") {
       return (
         <div className="flex justify-between ml-20 text-left text-yellow-500">
+          <ToastContainer />
           <div className="flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -170,9 +179,9 @@ const PostulacionScreen = () => {
     }
   };
 
-  console.log(Admision);
-  console.log(Programacion);
-  console.log(Matricula);
+  // console.log(Admision);
+  // console.log(Programacion);
+  // console.log("asdsada", Matricula);
   return (
     <Layout>
       {/* <div className="md:w-4/5 xl:w-3/5 h-full mx-auto mb-32 bg-opacity-20">
@@ -265,27 +274,43 @@ const PostulacionScreen = () => {
               <div className="flex justify-between">
                 {icons(Matricula)}
                 <div className="flex text-green-600 font-bold transition-all ease-out delay-75 duration-500 transform hover:-translate-y-1">
-                  {Programacion === 'Aprobado' && (
-                    <>
-                     <svg
-                     xmlns="http://www.w3.org/2000/svg"
-                     className="h-5 w-5"
-                     viewBox="0 0 20 20"
-                     fill="currentColor"
-                   >
-                     <path
-                       fillRule="evenodd"
-                       d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
-                       clipRule="evenodd"
-                     />
-                   </svg>
-                   <Link href="/matricula-copias">
-                     <a className="hover:text-green-600">Entregar documentos</a>
-                   </Link>
-                   </>
-                  )}
-                  
-                  
+                  { Programacion === 'Aprobado' && (
+                      
+                      `${Matricula}` === 'Pendiente' 
+                        ? 
+                        (
+                          <>
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              className="h-5 w-5"
+                              viewBox="0 0 20 20"
+                              fill="currentColor"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                          <Link href="/matricula-copias">
+                            <a className="hover:text-green-600">Entregar documentos</a>
+                          </Link>
+                        </>
+                        )
+                        :
+                        (
+                          <>
+                          <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                            <path fillRule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clipRule="evenodd" />
+                          </svg>
+                          <Link href="/postulacion/estado-matricula">
+                            <a className="hover:text-green-600">Ver estado de revisión</a>
+                          </Link>
+                          </>
+                        )
+                  )
+                  }
                 </div>
               </div>
               <dd>
@@ -313,7 +338,19 @@ const PostulacionScreen = () => {
                 <Image src={hoja} alt="image"/>
                 Constancia de traslado
               </dd>
+              
+              { Matricula === "Aprobado" && 
+                (
+                  <dt>
+                      <Pago 
+                        data={data}
+                      />
+                  </dt> 
+                )
+              }
             </dl>
+
+            
           </div>
         </div>
       </section>

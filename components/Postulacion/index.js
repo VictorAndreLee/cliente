@@ -30,7 +30,7 @@ const Postulacion = () => {
     if(loading) return "cargando..."
 
     const { obtenerAdmisiones } = data;
-
+    console.log(obtenerAdmisiones);
     return (
         <>
             <h1 className="text-2xl text-gray-800 font-light">Revisión de documentos</h1>
@@ -39,8 +39,13 @@ const Postulacion = () => {
             <div className="overflow-x-scroll">
                 <div className="shadow-md mt-10 w-full max-lg flex justify-center">
                     <div className='w-2/3'>
-                        {
-                            obtenerAdmisiones.map(item => (
+                        {   
+                            obtenerAdmisiones.length === 0 ? 
+                            (
+                                <p className='text-center font-bold text-base'>Aun no hay solicitud de postulaciones</p>
+                            )
+                            :
+                           obtenerAdmisiones.map(item => (
                                 <TablaPostulaciones 
                                     key={item.id}
                                     item={item}
